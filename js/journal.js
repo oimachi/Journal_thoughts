@@ -1,6 +1,83 @@
-$( document ).ready()
+$( document ).ready(function(){
+	$('#delete-form').submit(function(event){
+		event.preventDefault();
+		var frm = $(this);
+		_journal.deleteEntry(frm);
+	});
+
+	$('#edit-form').submit(function(event){
+		event.preventDefault();
+		var frm = $(this);
+		$('#edit-entry-a').trigger('click');
+		_journal.editEntry(frm);
+	});
+
+	// $('#update-entry-form').submit(function(event){
+	// 	event.preventDefault();
+	// 	var frm = $(this);
+	// 	_journal.updateEntry(frm);
+	// })
+});
 
 // Form Validation
+var _journal = new Journal();
+
+function Journal(){
+
+	this.entries = [];
+
+	this.addEntry = function(entry){
+		this.entries.push(entry);
+		this.drawTOC();
+	}
+
+	this.drawTOC = function(){
+		var index = this.entries.length -1;
+		$('#table-of-contents').html('');
+		//for(var index = 0; index<this.entries.length;index++)
+		for(index in this.entries){
+			var html = '<li data-index="'+index+'">'+this.entries[index].title+'</li>';
+			$('#table-of-contents').append(html);
+		}
+		$('#table-of-contents li').unbind('click');
+		$('#table-of-contents li').click(function(){
+			var object = $(this);
+			_journal.displayEntry(object.data('index'))
+		});
+	}
+
+	this.displayEntry = function(index){
+		$('#entry').show();
+		var entry = this.entries[index];
+		$('#post-title').html(entry.title);
+		$('#post-author').html(entry.author);
+		$('#post-content').html(entry.content);
+		$('.entry-index').val(index);
+	}
+
+	this.deleteEntry = function(frm){
+		var index = frm.find('input[name="index"]').val();
+		this.entries.splice(index,1);
+		$('#table-of-contents li[data-index="'+index+'"]').remove();
+		$('#entry').hide();
+		this.drawTOC();
+	}
+
+	this.editEntry = function(frm){
+		var index = frm.find('input[name="index"]').val();
+		var frm = $('#update-entry-form');
+		frm.find('input[name="title"]').val(this.entries[index].title);
+		frm.find('input[name="index"]').val(index);
+	}
+	this.updateEntry = function(frm){
+		var index = frm.find('input[name="index"]').val();
+		var title = frm.find('input[name="title"]').val();
+
+		this.entries[index].title = title;
+		this.drawTOC();
+	}
+}
+
 
 function entryFromForm() { 
 	var title = document.getElementById("title").value;
@@ -9,7 +86,17 @@ function entryFromForm() {
 	var tags = document.getElementById("tags").value;
 
 	console.log (title +', '+ author +', ' + content +', ' + tags); 
-	addEntry (title, author, content, tags) ;
+	addEntry(title, author, content, tags);
+
+	//clear values
+	document.getElementById("title").value = '';
+}
+
+
+function updateFromForm(formname){
+	var frm = $('form[name="'+formname+'"]');
+	event.preventDefault();
+	_journal.updateEntry(frm);
 }
 
 
@@ -22,7 +109,7 @@ function Entry(title, author, content, tags) {
 
 function addEntry (title, author, content, tags) {
 	var entry = new Entry(title, author, content, tags);
-	entries.push(entry);
+	_journal.addEntry(entry);
 	console.log(entry)
 }
 

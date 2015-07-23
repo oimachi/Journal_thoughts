@@ -39,6 +39,7 @@
                     <span class="icon-bar"></span>
                 </button>
                   <a class="navbar-brand" href="index.html" data-toggle="modal" data-target="#form">Add Journal Entry</a>
+                  <a id="edit-entry-a" class="navbar-brand" href="index.html" data-toggle="modal" data-target="#edit-entry" style="opacity:0">Add Journal Entry</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -110,10 +111,64 @@
     </div>
     </div>
   </div>
-  <!-- End Modal -->
-    <div class="container">
-        
 
+   <div id="edit-entry" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="container">
+     <div class="col-md-9">
+        <div class="form-area">  
+            <form id="update-entry-form" role="form" action="" method="GET" name="update_form_name">
+            <br style="clear:both">
+                <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h3 style="margin-bottom: 25px; text-align: center;">New Journal Entry</h3>
+                </div>
+                <div class="form-group">
+                <input type="hidden" name="index">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Title" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="author" name="author" placeholder="Author" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags" required>
+                        </div>
+                <div class="form-group">
+                    <textarea class="form-control" type="textarea" id="content" placeholder="Content" rows="12"></textarea>                    
+                    </div>
+                    <button type="button" class="btn btn-default pull-right" onClick="updateFromForm('update_form_name')"><span class="close" data-dismiss="modal"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Submit </span></button>   
+            </form>
+        </div>
+    </div>
+    </div>
+    </div>
+  </div>
+  <!-- End Modal -->
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                 <ul id="table-of-contents">
+
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <article id="entry" class="entry">
+                    <form id="delete-form" actiop="">
+                        <input class="entry-index" type="hidden" name="index" value=""> 
+                        <button>Delete</button>
+                    </form>
+                     <form id="edit-form" actiop="">
+                        <input class="entry-index" type="hidden" name="index" value=""> 
+                        <button>Edit</button>
+                    </form>
+                    <h1 id="post-title">[title]</h1>
+                    <div id="post-author">[author]</div>
+                    <p id="post-content">[content]</p>
+                </article>
+            </div>
+        </div>
     </div>
 
 <!--     <hr>
