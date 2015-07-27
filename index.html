@@ -102,7 +102,8 @@
                             <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags" required>
                         </div>
                 <div class="form-group">
-                    <textarea class="form-control" type="textarea" id="content" placeholder="Content" rows="12"></textarea>                    
+                    <textarea class="form-control" type="textarea" id="content" placeholder="Content" rows="12"></textarea>  
+                    <input type="hidden" id="date" name="date">                  
                     </div>
                     <button type="button" class="btn btn-default pull-right" onClick="entryFromForm(form_name)"><span class="close" data-dismiss="modal"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Submit </span></button>   
             </form>
@@ -122,7 +123,7 @@
             <br style="clear:both">
                 <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 style="margin-bottom: 25px; text-align: center;">New Journal Entry</h3>
+                <h3 style="margin-bottom: 25px; text-align: center;">Edit Entry</h3>
                 </div>
                 <div class="form-group">
                 <input type="hidden" name="index">
@@ -135,7 +136,8 @@
                             <input type="text" class="form-control" id="tags" name="tags" placeholder="Tags" required>
                         </div>
                 <div class="form-group">
-                    <textarea class="form-control" type="textarea" id="content" placeholder="Content" rows="12"></textarea>                    
+                    <textarea class="form-control" type="textarea" id="content" placeholder="Content" rows="12"></textarea> 
+                    <input type="hidden" id="date" name="date">                   
                     </div>
                     <button type="button" class="btn btn-default pull-right" onClick="updateFromForm('update_form_name')"><span class="close" data-dismiss="modal"><span class="glyphicon glyphicon-send" aria-hidden="true"></span> Submit </span></button>   
             </form>
@@ -149,23 +151,35 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                 <ul id="table-of-contents">
+             <span class="toc">
+                 <ul id="table-of-contents" class="toc">
 
                 </ul>
+             </span>
             </div>
             <div class="col-sm-9">
                 <article id="entry" class="entry">
-                    <form id="delete-form" actiop="">
-                        <input class="entry-index" type="hidden" name="index" value=""> 
+                    <h1 id="post-title">[title]</h1>
+                    <p id="post-author">[author]</p>
+                    <p id="post-content">[content]</p>
+                    <p id="post-date" class="date pull-right">[date]</p>
+                    <span class="btn">
+                    <div class="col-sm-3">
+                    <form id="delete-form" action="">
+                        <input class="entry-index pull-left" type="hidden" name="index" value=""> 
                         <button>Delete</button>
                     </form>
-                     <form id="edit-form" actiop="">
-                        <input class="entry-index" type="hidden" name="index" value=""> 
+                    </div>
+                    <div class="col-sm-3">
+                    </div>
+                    
+                    <div class="col-sm-3">
+                     <form id="edit-form" action="">
+                        <input class="entry-index pull-right" type="hidden" name="index" value=""> 
                         <button>Edit</button>
                     </form>
-                    <h1 id="post-title">[title]</h1>
-                    <div id="post-author">[author]</div>
-                    <p id="post-content">[content]</p>
+                    </div>
+                   </span>
                 </article>
             </div>
         </div>

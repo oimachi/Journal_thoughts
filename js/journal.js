@@ -12,14 +12,9 @@ $( document ).ready(function(){
 		_journal.editEntry(frm);
 	});
 
-	// $('#update-entry-form').submit(function(event){
-	// 	event.preventDefault();
-	// 	var frm = $(this);
-	// 	_journal.updateEntry(frm);
-	// })
 });
 
-// Form Validation
+// Create Journal
 var _journal = new Journal();
 
 function Journal(){
@@ -34,7 +29,6 @@ function Journal(){
 	this.drawTOC = function(){
 		var index = this.entries.length -1;
 		$('#table-of-contents').html('');
-		//for(var index = 0; index<this.entries.length;index++)
 		for(index in this.entries){
 			var html = '<li data-index="'+index+'">'+this.entries[index].title+'</li>';
 			$('#table-of-contents').append(html);
@@ -52,6 +46,7 @@ function Journal(){
 		$('#post-title').html(entry.title);
 		$('#post-author').html(entry.author);
 		$('#post-content').html(entry.content);
+		$('#post-date').html(entry.date);
 		$('.entry-index').val(index);
 	}
 
@@ -67,14 +62,24 @@ function Journal(){
 		var index = frm.find('input[name="index"]').val();
 		var frm = $('#update-entry-form');
 		frm.find('input[name="title"]').val(this.entries[index].title);
+		frm.find('input[name="author"]').val(this.entries[index].author);
+		frm.find('input[name="content"]').val(this.entries[index].content);
+		frm.find('input[name="tags"]').val(this.entries[index].tags);
 		frm.find('input[name="index"]').val(index);
 	}
 	this.updateEntry = function(frm){
 		var index = frm.find('input[name="index"]').val();
 		var title = frm.find('input[name="title"]').val();
+		var author = frm.find('input[name="author"]').val();
+		var content = frm.find('input[name="content"]').val();
+		var tags = frm.find('input[name="tags"]').val();
 
 		this.entries[index].title = title;
+		this.entries[index].author = author;
+		this.entries[index].content = content;
+		this.entries[index].tags = tags;
 		this.drawTOC();
+		this.displayEntry();
 	}
 }
 
@@ -84,9 +89,24 @@ function entryFromForm() {
 	var author = document.getElementById("author").value;
 	var content = document.getElementById("content").value;
 	var tags = document.getElementById("tags").value;
+	var date = (function SetDate(){
+	var date = new Date();
 
-	console.log (title +', '+ author +', ' + content +', ' + tags); 
-	addEntry(title, author, content, tags);
+	var day = date.getDate();
+	var month = date.getMonth() + 1;
+	var year = date.getFullYear();
+
+	if (month < 10) month = "0" + month;
+	if (day < 10) day = "0" + day;
+
+	var today = year + "-" + month + "-" + day;
+	document.getElementById('date').value = today;
+	console.log (date);
+	return today;
+})();
+
+	console.log (title +', '+ author +', ' + content +', ' + tags +', ' + date); 
+	addEntry(title, author, content, tags, date);
 
 	//clear values
 	document.getElementById("title").value = '';
@@ -100,114 +120,23 @@ function updateFromForm(formname){
 }
 
 
-function Entry(title, author, content, tags) {
+function Entry(title, author, content, tags, date) {
 	this.title = title;
 	this.content = content;
 	this.author = author;
 	this.tags = tags;
+	this.date = date;
 }
 
-function addEntry (title, author, content, tags) {
-	var entry = new Entry(title, author, content, tags);
+function addEntry (title, author, content, tags, date) {
+	var entry = new Entry(title, author, content, tags, date);
 	_journal.addEntry(entry);
 	console.log(entry)
 }
 
-//Define Entry Array
- var entries = [];
 
- //Testing Array Contents
-for(var i = 0; i < entries.length; i++){
-    console.log(i + " = " + entries[i]);
-}
+//Pupulating entries
+addEntry("Too Young", "Laura Waters", "Finn? Finn? Finn! Where are you? I need you to try this! Ill be there in a sec! Whats the status? Good, man! Nice! Seal the deal, bro! Okay, man! Whatevs! You can do it, you hear me?! Im playin BMO--call me later, bye! Hows Finns date? I think its goin good. Unlike your game, boiiiii!<p>Wait, wait! You cant give orders like that! Im in charge here, Lemongrab! TOO YOUNG! TOO YOUNG TO RULE THE KINGDOM! Watch your manners with the princess..! HHHHUUUUOOOOOOOOOOOH?! What the huh? MMMM! HAH! I am next in line to thee throne! Sooo... I will be in charge... UNTIL PRINCESS BUBBLEGUM turns... 18 again!", ["july ", " august"], "2015-07-27");
+addEntry("Beautopia", "Jane Tyler", "Hey, what kind of coffee do you want? Hazelnut! Hazelnut! What if your name was Zelnut? And then I would be all like Hey, Zelnut. Thats terrible. Hey, Zelnut. Stop! <p>You hear that? Yeah.Finn and Susan Strong! Finn, help Susan. Of course I will. Excuse us for a moment, Strong. Dude, you know youre my bro, but that girl is bad news.", ["septmeber ", " teachers"], "2015-06-04");
+addEntry("Marceline's Closet", "Colin McGrath", "Do you think it's right for Marceline to invite us to jam without Princess and BMO? It's just a jam sesh. Is that what you're gonna jam with? Yeah, man. Balloon music is the future. Listen. Pretty good. I don't think you mastered it yet. Well, duh. I just started.<p>Eliminating desire from my heart. It helps pass the time. Come on! I can't do that! Let's play Cloud Hunt 'til she gets here. No, man, I got a mental block with Cloud Hunt! Yeah, that's what makes it awesome, 'cause I know I'll win. Oh, what?! Bring it on, brother! Now explain the rules 'cause I forget. Okay. I count to ten and you go hide somewhere. Then, I gotta try to find you. You can hide... anywhere in here. Anywhere in here, ...but Marcy's house is off limits because she said so. Okay? Got it. Okay. I'm gonna start counting. Ready? Yes. Go!", ["december ", " santa"], "2015-04-21");
 
-
-
-/*function Journal()
-{
-	this.entries = [];
-
-	// adds an Entry with the given info
-	this.addEntry = function addIt(title, content, author, tags) {
-		// create the Entry object
-		var entry = new Entry(title, content, author, tags);
-		// add it to the array
-		this.entries.push(entry);
-	}
-
-	// Displays an Entry object
-	this.displayEntry = function showEntry(entry) {
-		console.log("------------------------------");
-		console.log("\t" + entry.title + "\n");
-		console.log("\t" + "By: " + entry.author);
-		console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		console.log(entry.content);	
-
-		// log the tags
-		for (var i = 0; i < entry.tags.length; i++) {
-			console.log("#" + entry.tags[i] + " ");		
-		}
-		console.log("------------------------------");
-	}
-
-	// Displays an array of Entry objects
-	this.displayEntries = function showEntries(entryArray) {
-		for (var i = 0; i < entryArray.length; i++) {	
-			this.displayEntry(entryArray[i]); // display the entry
-			console.log(); // adds a new line
-		}
-	}
-
-	// Displays all entries in the Journal
-	this.displayAllEntries = function showAllEntries() {
-		this.displayEntries(this.entries);
-	}
-
-	// Finds all Entry objects with the given tag, and returns them in an array
-	this.findAllEntriesWithTag = function searchForTag(tag)	{
-
-		var foundEntries = [];
-
-		// look at each entry
-		for (var i = 0; i < this.entries.length; i++) {
-			var currentEntry = this.entries[i];
-
-			// add it to the array if it has the tag	
-			if (currentEntry.hasTag(tag)) {
-				foundEntries.push(currentEntry);
-			}
-		}
-		// return all the entries with the tag
-		return foundEntries;
-	}
-}
-
-function Entry(title, content, author, tags) {
-	this.title = title;
-	this.content = content;
-	this.author = author;
-
-	this.tags = tags;
-
-	// returns whether or not the Entry has a given tag
-	this.hasTag = function (tag) {
-		for (var i = 0; i < this.tags.length; i++) {
-			if (this.tags[i] === tag) {
-				return true;
-			}
-		}
-		return false;
-	}
-}*/
-
-//TESTING CODE
-addEntry("Surprise", "Laura", "Summertime is the best time", ["july", "august"]);
-addEntry("School", "Amelia", "Maybe the strike will go on", ["septmeber", "teachers"]);
-addEntry("Chrsitmas", "Adrian", "Guelph of Toronto", ["december", "santa"]);
-
-// var myJournal = new Journal();
-// myJournal.addEntry("First Entry", "Everything is great!", "Ben", ["Friday", "Boring"]);
-// myJournal.addEntry("Second Entry", "What happened? Everything is terrible", "Ben", ["Monday", "Boring"]);
-
-// var foundEntries = myJournal.findAllEntriesWithTag("Monday");
-// myJournal.displayEntries(foundEntries);
