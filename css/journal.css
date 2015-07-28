@@ -354,14 +354,18 @@ body {
 }
 
 .entry_btn {
-  background-color: red;
-  border-radius: 45px;
+  margin-top: 50px;
+  margin-left: 100px;
+  height:30px;
+  width:100px;
+  background-color: #575145;
+  border-radius: 5px;
   font-size: 15px;
-  color: red;
+  color: #ffffff;
 }
 
 .entry_btn:hover,
 .entry_btn:focus{
-
+  background-color: #BAB1A2;
 }
 
