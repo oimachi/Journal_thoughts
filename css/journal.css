@@ -8,7 +8,9 @@ body {
   font-family: 'Lora', 'Times New Roman', serif;
   font-size: 20px;
   color: #575145;
+  margin-bottom: 100px;
 }
+
 p {
   line-height: 1.5;
 
@@ -216,7 +218,7 @@ hr.small {
     font-size: 30px;
   }
 }
-.post-preview > a {
+/*.post-preview > a {
   color: #404040;
 }
 .post-preview > a:hover,
@@ -228,13 +230,13 @@ hr.small {
   font-size: 20px;
   margin-top: 20px;
   margin-bottom: 10px;
-}
+}*/
 /*.post-preview > a > .post-subtitle {
   margin: 0;
   font-weight: 100;
   margin-bottom: 10px;
 }*/
-.post-preview > .post-meta {
+/*.post-preview > .post-meta {
   color: #808080;
   font-size: 14px;
   font-style: italic;
@@ -253,7 +255,7 @@ hr.small {
   .post-preview > a > .post-title {
     font-size: 24px;
   }
-}
+}*/
 .section-heading {
   font-size: 18px;
   margin-top: 60px;
@@ -269,118 +271,30 @@ hr.small {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-/*footer {
-  padding: 50px 0 65px;
-}
-footer .list-inline {
-  margin: 0;
-  padding: 0;
-}
-footer .copyright {
-  font-size: 14px;
-  text-align: center;
-  margin-bottom: 0;
-}*/
-/*.floating-label-form-group {
-  font-size: 14px;
-  position: relative;
-  margin-bottom: 0;
-  padding-bottom: 0.5em;
-  border-bottom: 1px solid #eeeeee;
-}
-.floating-label-form-group input,
-.floating-label-form-group textarea {
-  z-index: 1;
-  position: relative;
-  padding-right: 0;
-  padding-left: 0;
-  border: none;
-  border-radius: 0;
-  font-size: 1.5em;
-  background: none;
-  box-shadow: none !important;
-  resize: none;
-}
-.floating-label-form-group label {
-  display: block;
-  z-index: 0;
-  position: relative;
-  top: 2em;
-  margin: 0;
-  font-size: 0.85em;
-  line-height: 1.764705882em;
-  vertical-align: middle;
-  vertical-align: baseline;
-  opacity: 0;
-  -webkit-transition: top 0.3s ease,opacity 0.3s ease;
-  -moz-transition: top 0.3s ease,opacity 0.3s ease;
-  -ms-transition: top 0.3s ease,opacity 0.3s ease;
-  transition: top 0.3s ease,opacity 0.3s ease;
-}*/
-/*.floating-label-form-group::not(:first-child) {
-  padding-left: 14px;
-  border-left: 1px solid #eeeeee;
-}
-.floating-label-form-group-with-value label {
-  top: 0;
-  opacity: 1;
-}
-.floating-label-form-group-with-focus label {
-  color: #0085a1;
-}
-form .row:first-child .floating-label-form-group {
-  border-top: 1px solid #eeeeee;
-}*/
-.btn {
+
+/*.btn {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 800;
   letter-spacing: 1px;
-  border-radius: 0;
+  border-radius: 15px;
   padding: 15px 25px;
 }
 .btn-lg {
   font-size: 16px;
   padding: 25px 35px;
-}
+}*/
 .btn-default:hover,
 .btn-default:focus {
 /*  background-color: #0085a1;
   border: 1px solid #0085a1;*/
-  color: white;
+/*  color: white;*/
 }
 .entry{
   display: none;
 }
-/*.pager {
-  margin: 20px 0 0;
-}
-.pager li > a,
-.pager li > span {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  padding: 15px 25px;
-  background-color: white;
-  border-radius: 0;
-}
-.pager li > a:hover,
-.pager li > a:focus {
-  color: white;
-  background-color: #0085a1;
-  border: 1px solid #0085a1;
-}
-.pager .disabled > a,
-.pager .disabled > a:hover,
-.pager .disabled > a:focus,
-.pager .disabled > span {
-  color: #808080;
-  background-color: #404040;
-  cursor: not-allowed;
-}*/
+
 ::-moz-selection {
   color: white;
   text-shadow: none;
@@ -420,21 +334,34 @@ body {
   }
 
 .toc {
-  padding-right: 50px;
+  margin-top: 50px;
+  color: #404040;
+  border:none;
 }
 
-a.toc:hover,
-a.toc:focus {
-  color: red;
+.toc:hover,
+.toc:focus {
+  color: #BAB1A2;
   border:none;
   outline: none;
 }
 
 .date {
-  font-family: 'Lora', 'Times New Roman', serif;
   font-size: 10px;
   color: #575145;
   font-style: italic;
+  margin-right: 40px;
 }
 
+.entry_btn {
+  background-color: red;
+  border-radius: 45px;
+  font-size: 15px;
+  color: red;
+}
+
+.entry_btn:hover,
+.entry_btn:focus{
+
+}
 

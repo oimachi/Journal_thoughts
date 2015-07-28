@@ -30,7 +30,7 @@ function Journal(){
 		var index = this.entries.length -1;
 		$('#table-of-contents').html('');
 		for(index in this.entries){
-			var html = '<li data-index="'+index+'">'+this.entries[index].title+'</li>';
+			var html = '<span class="toc"><li data-index="'+index+'">'+this.entries[index].title+'</li></span>';
 			$('#table-of-contents').append(html);
 		}
 		$('#table-of-contents li').unbind('click');
@@ -89,6 +89,7 @@ function entryFromForm() {
 	var author = document.getElementById("author").value;
 	var content = document.getElementById("content").value;
 	var tags = document.getElementById("tags").value;
+	
 	var date = (function SetDate(){
 	var date = new Date();
 
@@ -103,7 +104,7 @@ function entryFromForm() {
 	document.getElementById('date').value = today;
 	console.log (date);
 	return today;
-})();
+    })();
 
 	console.log (title +', '+ author +', ' + content +', ' + tags +', ' + date); 
 	addEntry(title, author, content, tags, date);
@@ -135,7 +136,7 @@ function addEntry (title, author, content, tags, date) {
 }
 
 
-//Pupulating entries
+//Populating entries
 addEntry("Too Young", "Laura Waters", "Finn? Finn? Finn! Where are you? I need you to try this! Ill be there in a sec! Whats the status? Good, man! Nice! Seal the deal, bro! Okay, man! Whatevs! You can do it, you hear me?! Im playin BMO--call me later, bye! Hows Finns date? I think its goin good. Unlike your game, boiiiii!<p>Wait, wait! You cant give orders like that! Im in charge here, Lemongrab! TOO YOUNG! TOO YOUNG TO RULE THE KINGDOM! Watch your manners with the princess..! HHHHUUUUOOOOOOOOOOOH?! What the huh? MMMM! HAH! I am next in line to thee throne! Sooo... I will be in charge... UNTIL PRINCESS BUBBLEGUM turns... 18 again!", ["july ", " august"], "2015-07-27");
 addEntry("Beautopia", "Jane Tyler", "Hey, what kind of coffee do you want? Hazelnut! Hazelnut! What if your name was Zelnut? And then I would be all like Hey, Zelnut. Thats terrible. Hey, Zelnut. Stop! <p>You hear that? Yeah.Finn and Susan Strong! Finn, help Susan. Of course I will. Excuse us for a moment, Strong. Dude, you know youre my bro, but that girl is bad news.", ["septmeber ", " teachers"], "2015-06-04");
 addEntry("Marceline's Closet", "Colin McGrath", "Do you think it's right for Marceline to invite us to jam without Princess and BMO? It's just a jam sesh. Is that what you're gonna jam with? Yeah, man. Balloon music is the future. Listen. Pretty good. I don't think you mastered it yet. Well, duh. I just started.<p>Eliminating desire from my heart. It helps pass the time. Come on! I can't do that! Let's play Cloud Hunt 'til she gets here. No, man, I got a mental block with Cloud Hunt! Yeah, that's what makes it awesome, 'cause I know I'll win. Oh, what?! Bring it on, brother! Now explain the rules 'cause I forget. Okay. I count to ten and you go hide somewhere. Then, I gotta try to find you. You can hide... anywhere in here. Anywhere in here, ...but Marcy's house is off limits because she said so. Okay? Got it. Okay. I'm gonna start counting. Ready? Yes. Go!", ["december ", " santa"], "2015-04-21");
