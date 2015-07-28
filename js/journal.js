@@ -63,9 +63,7 @@ function Journal(){
 		var frm = $('#update-entry-form');
 		frm.find('input[name="title"]').val(this.entries[index].title);
 		frm.find('input[name="author"]').val(this.entries[index].author);
-		var content = entry.content
-		$('#textareaid').val(content)
-		// frm.find('input[name="content"]').val(this.entries[index].content);
+		frm.find('input[name="content"]').val(this.entries[index].content);
 		frm.find('input[name="tags"]').val(this.entries[index].tags);
 		frm.find('input[name="index"]').val(index);
 	}
