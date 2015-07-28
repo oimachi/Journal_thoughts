@@ -356,6 +356,7 @@ body {
 .entry_btn {
   margin-top: 50px;
   margin-left: 100px;
+  vertical-align: bottom;
   height:30px;
   width:100px;
   background-color: #575145;
@@ -368,4 +369,5 @@ body {
 .entry_btn:focus{
   background-color: #BAB1A2;
 }
+
 
